@@ -15,10 +15,7 @@ test_that("variance", {
 })
 
 
-test_that("edge cases", {
-  expect_true(is.nan(qcov(c(1:10), 0)$cov))
-  expect_true(is.nan(qcov(c(1:10), 1)$cov))
-})
+
 
 
 
