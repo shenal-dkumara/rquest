@@ -4,6 +4,8 @@
 # rquest
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/shenal-dkumara/rquest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shenal-dkumara/rquest/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Overview
