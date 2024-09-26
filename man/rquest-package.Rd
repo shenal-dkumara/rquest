@@ -8,6 +8,14 @@
 \description{
 The rquest package provides a simple way to conduct hypothesis tests and derive confidence intervals for quantiles, linear combinations of quantiles, ratios of dependent linear combinations (e.g., Bowley’s measure of skewness) and differences and ratios of all of the above for comparisons between independent samples. Additionally, quantile-based measures of inequality are also considered.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/shenal-dkumara/rquest}
+  \item Report bugs at \url{https://github.com/shenal-dkumara/rquest/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Shenal Dedduwakumara \email{shenal.dedduwakumara@adelaide.edu.au}
 
