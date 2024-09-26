@@ -1,6 +1,4 @@
-# rquest 2.0.0
-
-# rquest 1.0.0
+# rquest (development version)
 
 * Initial CRAN submission.
 
