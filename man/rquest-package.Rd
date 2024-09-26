@@ -4,7 +4,7 @@
 \name{rquest-package}
 \alias{rquest}
 \alias{rquest-package}
-\title{rquest: An R package for hypothesis tests and confidence intervals for quantiles and summary measures based on quantiles}
+\title{rquest: An R Package for Hypothesis Tests and Confidence Intervals for Quantiles and Summary Measures Based on Quantiles}
 \description{
 The rquest package provides a simple way to conduct hypothesis tests and derive confidence intervals for quantiles, linear combinations of quantiles, ratios of dependent linear combinations (e.g., Bowley’s measure of skewness) and differences and ratios of all of the above for comparisons between independent samples. Additionally, quantile-based measures of inequality are also considered.
 }
