@@ -1,3 +1,3 @@
-2# rquest (development version)
+# rquest (development version)
 
 * Initial CRAN submission.
