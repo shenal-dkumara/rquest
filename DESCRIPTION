@@ -1,0 +1,23 @@
+Package: rquest
+Title: An R package for hypothesis tests and confidence intervals for quantiles and summary measures based on quantiles
+Version: 0.0.0.9000
+Authors@R: 
+  c(person("Shenal", "Dedduwakumara", 
+           email = "shenal.dedduwakumara@adelaide.edu.au", 
+           role = c("cre", "aut")),
+    person("Luke", "Prendergast", 
+           email = "luke.prendergast@latrobe.edu.au", 
+           role = "aut"),
+    person("Robert", "Staudte", 
+           email = "r.staudte@latrobe.edu.au", 
+           role = "aut"))
+Description: The rquest package provides a simple way to conduct hypothesis tests and derive confidence intervals for quantiles, linear combinations of quantiles, ratios of dependent linear combinations (e.g., Bowley’s measure of skewness) and differences and ratios of all of the above for comparisons between independent samples. Additionally, quantile-based measures of inequality are also considered.
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+License: GPL (>= 3) + file LICENSE
+Imports: 
+    stats
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

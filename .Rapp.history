@@ -1,0 +1,12 @@
+1+1
+q.test(rnorm(100), u = c(0.25, 0.75), coef = c(-1, 1))
+library(quEst)
+help(quEst)
+??quEst
+q.test(c(1:10))
+library(quEst)
+q.test(c(1:10))
+getwd()
+install.packages("quEst")
+library(quEst)
+q.test(c(1:10))
