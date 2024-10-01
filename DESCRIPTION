@@ -1,6 +1,6 @@
 Package: rquest
 Title: An R Package for Hypothesis Tests and Confidence Intervals for Quantiles and Summary Measures Based on Quantiles
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
   c(person("Shenal", "Dedduwakumara", 
            email = "shenal.dedduwakumara@adelaide.edu.au", 
