@@ -11,7 +11,7 @@
 #' * `iqr`: The interquartile range.
 #' * `rCViqr`: The robust Coefficient of Variation measure (Arachchige et al.,2022)
 #' * `bowley`, `groenR` and `groenL`: These choices are for Bowley's skew coefficient,
-#' for the generalised measure, and the right and left skew measures by Groeneveld and Meeden (Groeneveld & Meeden, 1984, 2009). For each of these measures, the user may specify the choice of p using argument `p`.  If this is not used, then the default is `p=0.25`.
+#' for the generalized measure, and the right and left skew measures by Groeneveld and Meeden (Groeneveld & Meeden, 1984, 2009). For each of these measures, the user may specify the choice of p using argument `p`.  If this is not used, then the default is `p=0.25`.
 #' * `moors`: This Moors kurtosis measure (Moors, 1988).
 #' * `lqw` and `rqw`: These are for the robust left and right tail weights (Brys et al., 2006).
 #' * `qrxxyy`: A character string consisting of the first two characters "qr" and followed by four numbers will request a ratio of dependents quantiles (i.e. different quantiles from the same sample).The first two number digits (in place of "xx") will indicate the quantile for the numerator, and the second two numerical digits "yy" for the denominator.  For example, `qr9010` will estimate and test the ratio Q(0.9)/Q(0.1).
@@ -47,9 +47,9 @@
 #' @param conf.level coverage for the estimated confidence interval.
 #' @param true.q a numeric value for the true value under the null hypothesis test.
 #' @param log.transf boolean indicating whether the a log transformation of the measure is to be used (i.e., estimates of the log of the measure are computed).
-#' @param back.transf boolean indicating whether the measre and estimates should be back-transformed  to the original scale using exp.
+#' @param back.transf boolean indicating whether the measure and estimates should be back-transformed  to the original scale using exp.
 #' @param min.q the lower bound for a one-sided confidence interval when alternative  argument if "less".
-#' @param p optional value in (0, 1) for Bowley's generlized skewness coefficient.
+#' @param p optional value in (0, 1) for Bowley's generalized skewness coefficient.
 #' @return hypothesis test results and associated confidence interval (a list with class "htest")
 #' @references
 #'

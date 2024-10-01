@@ -51,11 +51,11 @@ for more details)}
 
 \item{log.transf}{boolean indicating whether the a log transformation of the measure is to be used (i.e., estimates of the log of the measure are computed).}
 
-\item{back.transf}{boolean indicating whether the measre and estimates should be back-transformed  to the original scale using exp.}
+\item{back.transf}{boolean indicating whether the measure and estimates should be back-transformed  to the original scale using exp.}
 
 \item{min.q}{the lower bound for a one-sided confidence interval when alternative  argument if "less".}
 
-\item{p}{optional value in (0, 1) for Bowley's generlized skewness coefficient.}
+\item{p}{optional value in (0, 1) for Bowley's generalized skewness coefficient.}
 }
 \value{
 hypothesis test results and associated confidence interval (a list with class "htest")
@@ -72,7 +72,7 @@ The quantile measures that can be estimated are specified in the \code{measure} 
 \item \code{iqr}: The interquartile range.
 \item \code{rCViqr}: The robust Coefficient of Variation measure (Arachchige et al.,2022)
 \item \code{bowley}, \code{groenR} and \code{groenL}: These choices are for Bowley's skew coefficient,
-for the generalised measure, and the right and left skew measures by Groeneveld and Meeden (Groeneveld & Meeden, 1984, 2009). For each of these measures, the user may specify the choice of p using argument \code{p}.  If this is not used, then the default is \code{p=0.25}.
+for the generalized measure, and the right and left skew measures by Groeneveld and Meeden (Groeneveld & Meeden, 1984, 2009). For each of these measures, the user may specify the choice of p using argument \code{p}.  If this is not used, then the default is \code{p=0.25}.
 \item \code{moors}: This Moors kurtosis measure (Moors, 1988).
 \item \code{lqw} and \code{rqw}: These are for the robust left and right tail weights (Brys et al., 2006).
 \item \code{qrxxyy}: A character string consisting of the first two characters "qr" and followed by four numbers will request a ratio of dependents quantiles (i.e. different quantiles from the same sample).The first two number digits (in place of "xx") will indicate the quantile for the numerator, and the second two numerical digits "yy" for the denominator.  For example, \code{qr9010} will estimate and test the ratio Q(0.9)/Q(0.1).
