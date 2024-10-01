@@ -4,7 +4,7 @@ Version: 1.0.0
 Authors@R: 
   c(person("Shenal", "Dedduwakumara", 
            email = "shenal.dedduwakumara@adelaide.edu.au", 
-           role = c("cre", "aut")),
+           role = c("aut","cre")),
     person("Luke", "Prendergast", 
            email = "luke.prendergast@latrobe.edu.au", 
            role = "aut"),
@@ -14,8 +14,8 @@ Authors@R:
 Description: The rquest package provides a simple way to conduct hypothesis tests and derive confidence intervals for quantiles, linear combinations of quantiles, ratios of dependent linear combinations (e.g., Bowley’s measure of skewness) and differences and ratios of all of the above for comparisons between independent samples. Additionally, quantile-based measures of inequality are also considered.
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-License: GPL (>= 3) + file LICENSE
+RoxygenNote: 7.3.2
+License: GPL (>= 3)
 Imports: 
     stats
 Suggests: 
