@@ -1,3 +1,5 @@
+# rquest 1.0.2
+
 # rquest 1.0.1
 
 * Added a entries to `NEWS.md` file to track changes to the package.

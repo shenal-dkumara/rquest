@@ -1,6 +1,6 @@
 Package: rquest
 Title: Hypothesis Tests for Quantiles and Quantile-Based Measures 
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: 
   c(person("Shenal", "Dedduwakumara", 
            email = "shenal.dedduwakumara@adelaide.edu.au", 
