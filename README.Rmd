@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/shenal-dkumara/rquest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shenal-dkumara/rquest/actions/workflows/R-CMD-check.yaml)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/grand-total/myCoolPackage)](https://cran.r-project.org/package=myCoolPackage)
 <!-- badges: end -->
 
 ## Overview
