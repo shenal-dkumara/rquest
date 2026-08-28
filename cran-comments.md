@@ -1,19 +1,20 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
-* This is a new release.
+## Changes in this version
+
+This is an update to rquest version 1.1.0.
+
+This version adds functionality for quantile density estimation, quantile
+optimality ratios, covariance estimation for ratios of linear combinations
+of quantiles, and inference for robust coefficients of variation.
+
+Existing functions for quantile-based inference, covariance estimation,
+and inequality measures have also been extended and updated.
+
+Documentation and the automated test suite have been expanded.
 
 ## revdepcheck results
 
-* There are currently no downstream dependencies for this package
-
-## Resubmission
-
-This is a resubmission. In this version I have:
-
-* Added news entries in NEWS.md
-* Changed the title of the package to have 65 characters.
-* Changed the description of the package to have 80 characters in single line.
-* Note that the paper related to the package is not yet available online. After the package is accepted, the paper will be uploaded to arXiv and then the DOI and reference of the paper will be updated. 
-
+There are currently no downstream dependencies for this package.
