@@ -21,71 +21,301 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-The `rquest` package provides convenient functionality for researchers to carry out hypothesis tests and obtain confidence intervals for measures based on quantiles. This includes for single quantiles (e.g., the median), linear combinations of quantiles (such as the interquartile range), ratios
-of linear combinations commonly found in skewness and kurtosis measures, and newly developed inequality measures. Another key objective is to
-make it easy for users to define their own measures for hypothesis testing and confidence intervals.
+The `rquest` package provides convenient functionality for researchers to carry out hypothesis tests and obtain confidence intervals for measures based on quantiles. This includes single quantiles (e.g., the median), linear combinations of quantiles (such as the interquartile range), ratios of linear combinations commonly found in skewness and kurtosis measures, and quantile-based inequality measures. Importantly, the package also allows users to define their own measures based on quantiles and carry out hypothesis tests and construct confidence intervals for these measures.
 
-Following are the main functions in the package:
+The package also provides functionality for quantile density estimation, computation of quantile optimality ratios (QOR), covariance estimation for quantiles and ratios of linear combinations of quantiles, and inference for robust versions of the coefficient of variation.
 
-* `q.test()` carry out hypothesis tests and obtain associated confidence intervals for linear combinations of quantiles, and ratios of such linear combinations.
+## Key functionality
 
-* `qineq()` carry out hypothesis tests and obtain associated confidence intervals for quantile based inequality measures
+`rquest` provides a flexible framework for quantile-based statistical inference. Key functionality includes:
 
-* `qcov()` compute a covariance matrix consisting of variances (on the diagonal) for quantile estimates and covariances (off-diagonal) between different quantile estimates
+* **Quantile inference:** hypothesis tests and confidence intervals for individual quantiles, linear combinations of quantiles, and ratios of linear combinations of quantiles.
 
+* **User-defined measures:** specification of custom quantile-based measures, allowing users to carry out hypothesis tests and construct confidence intervals beyond the measures built into the package.
+
+* **One- and two-sample inference:** comparison of quantiles and quantile-based measures within a single population or between two independent populations.
+
+* **Robust measures of variation:** inference for robust versions of the coefficient of variation based on the MAD and IQR.
+
+* **Quantile-based inequality measures:** inference for built-in inequality measures as well as user-defined quantile-based inequality measures.
+
+* **Quantile density estimation:** estimation of quantile densities using QOR-based or density-based methods.
+
+* **Flexible QOR computation:** computation of quantile optimality ratios using the generalized lambda distribution, lognormal, normal, exponential, or a user-supplied quantile function.
+
+* **Covariance estimation:** covariance matrices for quantile estimators and for ratios of linear combinations of quantiles.
+
+## Main functions
+
+The main functions in the package are:
+
+* `q.test()` carries out hypothesis tests and obtains associated confidence intervals for quantiles, linear combinations of quantiles, and ratios of linear combinations of quantiles.
+
+* `qineq()` carries out hypothesis tests and obtains associated confidence intervals for quantile-based inequality measures, including user-defined measures.
+
+* `qcov()` computes covariance matrices containing variances and covariances of quantile estimators.
+
+* `qden()` estimates the quantile density function using either a QOR-based method or a density-based method.
+
+* `qor()` computes quantile optimality ratios for supported distributions or user-supplied quantile functions.
+
+* `qrcov()` computes approximate covariance matrices for ratios of linear combinations of quantile estimators.
+
+* `rcv.test()` carries out one- and two-sample inference for robust versions of the coefficient of variation based on the MAD or IQR.
 
 ## Installation
 
-You can install the development version of `rquest` from [GitHub](https://github.com/) with:
+You can install the released version of `rquest` from CRAN with:
 
-``` r
+```r
+install.packages("rquest")
+```
+
+You can install the development version of `rquest` from GitHub with:
+
+```r
 # install.packages("pak")
 pak::pak("shenal-dkumara/rquest")
 ```
 
 ## Usage
 
-```{r example}
+```{r setup-rquest}
 library(rquest)
-
-## Functionality of q.test() ##
-
-#  Create some data
-x <- c(8.43,7.08,8.79,8.88,7.87,5.94,8.79,5.46,8.11,7.08)
-y <- c(13.44,13.65,14.77,9.51,14.07,10.92,11.59,13.42,8.93,10.88)
-
-# One sample hypothesis test for the IQR
-q.test(x, measure = "iqr")
-
-# Two samples hypothesis test for robust coefficient variations (0.75*IQR/median) with log transformation and back-transformation to the ratio scale,.
-q.test(x, y, measure = "rCViqr", log.transf = TRUE, back.transf = TRUE)
-
-# The same two samples hypothesis test for robust coefficient variations (0.75*IQR/median) by using 'u',''u2','coef' and 'coef2' arguments.
-u<-c(0.25,0.75)
-coef<-0.75*c(-1,1)
-u2<-0.5
-coef2<-1
-q.test(x,y,u=u,u2=u2,coef=coef,coef2=coef2,log.transf=TRUE,back.transf=TRUE)
-
-# The same two samples hypothesis test for robust coefficient variations (0.75*IQR/median) by using only 'u' and 'coef' arguments.
-u<-c(0.25,0.5,0.75)
-num <- 0.75*c(-1,0,1)
-den <- c(0,1,0)
-coef <- rbind(num, den)
-q.test(x,y,u=u,coef=coef,log.transf=TRUE,back.transf=TRUE)
-
-## Functionality of qcov() ##
-
-# Compute the variance-covariance matrix for sample quartiles.
-qcov(x, c(0.25, 0.5, 0.75))
-
-
-## Functionality of qineq() ##
-
-# Two sample hypothesis test for the QRI measure
-qineq(x,y)
 ```
 
+### Quantile-based inference with `q.test()`
 
+```{r qtest-example}
+# Create some data
+x <- c(8.43, 7.08, 8.79, 8.88, 7.87,
+       5.94, 8.79, 5.46, 8.11, 7.08)
 
+y <- c(13.44, 13.65, 14.77, 9.51, 14.07,
+       10.92, 11.59, 13.42, 8.93, 10.88)
 
+# One-sample hypothesis test for the IQR
+q.test(x, measure = "iqr")
+
+# Two-sample hypothesis test for robust coefficients of variation
+# (0.75 * IQR / median), with log transformation and
+# back-transformation to the ratio scale
+q.test(
+  x, y,
+  measure = "rCViqr",
+  log.transf = TRUE,
+  back.transf = TRUE
+)
+```
+
+The same measure can also be specified directly in terms of the required quantiles and coefficients:
+
+```{r qtest-custom-example}
+u <- c(0.25, 0.75)
+coef <- 0.75 * c(-1, 1)
+u2 <- 0.5
+coef2 <- 1
+
+q.test(
+  x, y,
+  u = u,
+  u2 = u2,
+  coef = coef,
+  coef2 = coef2,
+  log.transf = TRUE,
+  back.transf = TRUE
+)
+```
+
+Alternatively, the numerator and denominator can be defined using a coefficient matrix:
+
+```{r qtest-matrix-example}
+u <- c(0.25, 0.5, 0.75)
+num <- 0.75 * c(-1, 0, 1)
+den <- c(0, 1, 0)
+coef <- rbind(num, den)
+
+q.test(
+  x, y,
+  u = u,
+  coef = coef,
+  log.transf = TRUE,
+  back.transf = TRUE
+)
+```
+
+### Covariance estimation with `qcov()`
+
+```{r qcov-example}
+set.seed(1234)
+xq <- rnorm(100)
+
+# Covariance matrix for sample quartiles
+qcov(xq, c(0.25, 0.5, 0.75))
+```
+
+### Quantile density estimation with `qden()`
+
+```{r qden-example}
+set.seed(1234)
+xd <- rnorm(100)
+
+# QOR-based quantile density estimation using
+# the flexible GLD distribution
+qden(
+  xd,
+  c(0.25, 0.5, 0.75),
+  method = "qor"
+)
+
+# QOR-based quantile density estimation using
+# the normal distribution
+qden(
+  xd,
+  c(0.25, 0.5, 0.75),
+  dist = "norm",
+  method = "qor"
+)
+
+# Density-based quantile density estimation
+qden(
+  xd,
+  c(0.25, 0.5, 0.75),
+  method = "density"
+)
+```
+
+### Quantile optimality ratios with `qor()`
+
+```{r qor-example}
+set.seed(1234)
+xqor <- rlnorm(100)
+
+# QOR using the flexible FKML GLD distribution
+# with parameters estimated from the data
+qor(
+  seq(0.1, 0.9, by = 0.2),
+  x = xqor
+)
+
+# QOR using the lognormal distribution
+qor(
+  seq(0.1, 0.9, by = 0.2),
+  dist = "lnorm",
+  x = xqor
+)
+
+# QOR for the exponential distribution
+qor(
+  seq(0.1, 0.9, by = 0.2),
+  dist = "exp"
+)
+
+# QOR for a user-supplied quantile function
+qor(
+  c(0.2, 0.5, 0.8),
+  dist = qbeta,
+  params = list(shape1 = 2, shape2 = 5)
+)
+```
+
+### Covariance estimation for ratios with `qrcov()`
+
+```{r qrcov-example}
+set.seed(1234)
+xr <- rnorm(100)
+
+# Covariance matrix for the ratio of the third quartile
+# to the median and the ratio of the first quartile
+# to the median
+coef1 <- matrix(
+  c(0, 0, 1,
+    1, 0, 0),
+  nrow = 2,
+  byrow = TRUE
+)
+
+coef2 <- matrix(
+  c(0, 1, 0,
+    0, 1, 0),
+  nrow = 2,
+  byrow = TRUE
+)
+
+qrcov(
+  xr,
+  c(0.25, 0.5, 0.75),
+  coef1 = coef1,
+  coef2 = coef2
+)
+```
+
+### Quantile-based inequality measures with `qineq()`
+
+```{r qineq-example}
+# Create some data
+x <- c(8.43, 7.08, 8.79, 8.88, 7.87,
+       5.94, 8.79, 5.46, 8.11, 7.08)
+
+y <- c(13.44, 13.65, 14.77, 9.51, 14.07,
+       10.92, 11.59, 13.42, 8.93, 10.88)
+
+# Test equality of the QRI measure between two groups
+qineq(x, y, measure = "QRI")
+```
+
+A user-defined inequality measure can be specified directly using a formula. For example, the QRI can equivalently be defined as:
+
+```{r qineq-formula-example}
+qineq(
+  x, y,
+  measure = ~ Q(p/2) / Q(1 - p/2)
+)
+```
+
+More generally, a user-defined measure can also be specified directly using the required quantiles and coefficient matrices:
+
+```{r qineq-list-example}
+J <- 100
+p <- (1:J - 0.5) / J
+u <- sort(c(p/2, 1 - p/2))
+
+num <- cbind(
+  diag(rep(1, J)),
+  matrix(0, J, J)
+)
+
+den <- cbind(
+  matrix(0, J, J),
+  diag(J)[, J:1]
+)
+
+qineq(
+  x, y,
+  measure = list(
+    u = u,
+    coef1 = num,
+    coef2 = den
+  )
+)
+```
+
+### Robust coefficients of variation with `rcv.test()`
+
+```{r rcv-example}
+set.seed(123)
+x1 <- rnorm(100, 8)
+x2 <- rnorm(120, 10)
+
+# One-sample inference using the MAD
+rcv.test(x1)
+
+# One-sample inference using the IQR
+rcv.test(x1, numerator = "iqr")
+
+# Two-sample inference using the MAD
+rcv.test(x1, x2)
+
+# Two-sample inference using the IQR
+rcv.test(x1, x2, numerator = "iqr")
+```
