@@ -65,21 +65,29 @@ qor <- function(u, dist = "gl", x = NULL, params = NULL, gl.control = list(metho
       stop("Must provide 'x' if 'params' is NULL.\n")
 
     if(dist == "gl"){
-      if(is.null(params)){
+      if (is.null(params)) {
         res <- do.call(gld::fit.fkml, c(list(x = x), gl.control))
         l <- res$lambda
-      } else{
+        params <- as.list(l)
+        names(params) <- c("lambda1", "lambda2", "lambda3", "lambda4")
+      } else {
         l <- unlist(params)
       }
       num <- u^(l[3] - 1) + (1 - u)^(l[4] - 1)
       den <- (l[3] - 1)*(l[3] - 2)*u^(l[3] - 3) + (l[4] - 2)*(l[4] - 1)*(1 - u)^(l[4] - 3)
       out <- num/den
-    } else if (dist == "lnorm"){
-      if(any(x <= 0)) stop("Values in 'x' must be positive if using 'lnorm'.\n")
-      if (is.null(params)) sdlog <- sd(log(x))
-      else sdlog <- params$sdlog
+    } else if (dist == "lnorm") {
+      if (!is.null(x) && any(x <= 0)) {stop("Values in 'x' must be positive if using 'lnorm'.\n")}
+      if (is.null(params)) {
+        sdlog <- sd(log(x))
+        params <- list(sdlog = sdlog)
+      } else {
+        sdlog <- params$sdlog
+      }
+
       zu <- qnorm(u)
-      out <- dnorm(zu)^2/(1 + sdlog^2 + 3*sdlog * zu + 2*zu^2)
+      out <- dnorm(zu)^2 /
+        (1 + sdlog^2 + 3 * sdlog * zu + 2 * zu^2)
     } else if (dist == "norm"){
       zu <- qnorm(u)
       out <- dnorm(zu)^2 / (1 + 2 * zu^2)
